@@ -1,0 +1,35 @@
+/* Design tokens. Dark only: one theme for the whole site (space, electric propulsion).
+   Blue = ions (primary, structural). Orange = ember/energy (CTAs and "energy" moments only). */
+:root {
+  color-scheme: dark;
+
+  /* surfaces */
+  --bg: #05070f;
+  --card: #0b1020;
+  --border: #1b2540;
+
+  /* text (contrast on --bg: fg ~17:1, muted ~8:1) */
+  --fg: #e8eef8;
+  --muted: #9aa8c1;
+
+  /* accents */
+  --accent: #4cc9ff;      /* ion blue */
+  --accent-deep: #1e6bff; /* deep ion blue, glows only */
+  --ember: #ff7a2f;       /* orange, on-dark text --bg gives ~8:1 */
+
+  /* type */
+  --font-sans: 'Geist Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  /* shape: one radius for cards, buttons and inputs */
+  --radius: 0.75rem;
+
+  /* layout */
+  --nav-h: 4rem;
+  --wrap: 72rem;
+
+  /* z-index scale: systemic layers only */
+  --z-stars: -1;
+  --z-nav: 10;
+  --z-skip: 20;
+}

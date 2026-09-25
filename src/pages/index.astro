@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+// Projects with a full case-study page (src/content/projects/). Cards link to /projects/<slug>.
+const caseStudies = await getCollection('projects');
+// Featured first, then newest first, so the latest highlighted project leads the grid.
+const fromCollection = caseStudies
+  .sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || Number(b.data.year) - Number(a.data.year))
+  .map((p) => ({
+    title: p.data.title,
+    meta: `${p.data.role.split(',')[0].split('(')[0].trim()}, ${p.data.year}`,
+    text: p.data.summary,
+    href: `/projects/${p.id}/`,
+  }));
+
+// Remaining projects: shell copy until each gets its own case-study page.
+const shellOnly = [
+  { title: 'Stepped-lap repair patch', meta: 'Composite NDE and Repair Lab, 2023', text: 'Designed a fiberglass repair joint, modeled its load path with a Volkersen analysis, and tested it past 10 kN in tension.' },
+  { title: 'Ultrasonic C-scan', meta: 'Structural Health Monitoring Lab, 2023', text: 'Built an immersion C-scan setup and analysis code that maps disbond defects in a composite wing skin.' },
+  { title: 'FSAE rear wing', meta: 'Triton Racing, 2022', text: 'Designed a multi-element rear wing for low-speed downforce. The car finished 8th overall and 8th in efficiency.' },
+];
+
+const work = [...fromCollection, ...shellOnly];
+---
+<Base
+  title="Zachary Candau | Aerospace Engineer"
+  description="Portfolio of Zachary Candau, an aerospace engineer working on composite structures, structural analysis and electric propulsion."
+>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Zachary Candau</h1>
+      <p class="lead">Aerospace engineer. I design, analyze and test composite structures and space hardware.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#projects">View work</a>
+        <a class="btn btn-ghost" href="#contact">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <h2>About</h2>
+      <p class="prose">
+        I'm an aerospace engineer focused on composite structures, structural analysis and hands-on testing.
+        I hold a B.S. in Structural Engineering from UC San Diego, am completing my M.S. there in advanced
+        aerospace composites, and work as a founding analysis engineer at a space startup building electric propulsion.
+      </p>
+      <p class="prose">
+        I am a hardware engineer who wants to build and design hardware that’s fun again. At the same time I want to use
+        the resources at my disposal and my research experience to build new pieces of software that anyone can access.
+        Every hardware engineer should learn to be a software engineer too. Mechanical engineers should be aero, aero
+        should be electrical, electrical should be SWE, SWE should be financiers, financiers should be quants, and quants
+        should be hardware engineers. Creating content to share my current place as well as my journey of growth in all
+        of these aspects.
+      </p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <ul class="work">
+        {work.map((p) => (
+          <li>
+            <article>
+              <span class="meta">{p.meta}</span>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+              {p.href && <p class="case-link"><a href={p.href}>Read case study &rarr;</a></p>}
+              {p.code && <p><a href={p.code} rel="noopener">Code</a></p>}
+            </article>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p class="prose">Open to conversations about engineering roles, research and collaboration.</p>
+      <div class="contact-links">
+        <a href="mailto:zbcandau@gmail.com">zbcandau@gmail.com</a>
+        <a href="https://www.linkedin.com/in/zachary-candau/" rel="me noopener">LinkedIn</a>
+        <a href="https://linktr.ee/zcandont" rel="me noopener">Linktree</a>
+      </div>
+    </div>
+  </section>
+</Base>

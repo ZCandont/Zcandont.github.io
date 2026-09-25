@@ -1,12 +1,13 @@
 # Zcandont.github.io
 
-Personal website and portfolio, hosted on GitHub Pages at https://zcandont.github.io.
+Personal engineering portfolio of Zachary Candau, live at https://zcandont.github.io.
 
-Plain HTML/CSS with no build step. Open `index.html` in a browser to preview, or run `python -m http.server` in this folder.
+Built with [Astro](https://astro.build) (static output), self-hosted Geist fonts, and no client framework. Deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`.
 
-## Roadmap
-- [ ] Replace placeholder copy (bio, tagline, projects)
-- [ ] Add real project cards with links and screenshots
-- [ ] Add favicon and social-share image
-- [ ] Add resume/CV page
-- [ ] Accessibility and performance pass
+```
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # outputs to dist/
+```
+
+The design and build plan is in [ROADMAP.md](ROADMAP.md). Project conventions for contributors (and Claude Code sessions) are in [CLAUDE.md](CLAUDE.md).
