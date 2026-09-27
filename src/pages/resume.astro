@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Resume | Zachary Candau"
+  description="Zachary Candau's resume: download the PDF or view it inline."
+>
+  <section class="case-header">
+    <div class="wrap">
+      <a class="back" href="/#top">&larr; Home</a>
+      <h1>Resume</h1>
+      <p class="lead">Always the current version. Download it or open it directly.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/resume.pdf" download>Download PDF</a>
+        <a class="btn btn-ghost" href="/resume.pdf" target="_blank" rel="noopener">Open in new tab</a>
+      </div>
+    </div>
+  </section>
+  <section class="resume-embed">
+    <div class="wrap">
+      <object data="/resume.pdf" type="application/pdf">
+        <p class="prose">
+          Your browser can't preview PDFs inline. <a href="/resume.pdf">Download the resume</a> instead.
+        </p>
+      </object>
+    </div>
+  </section>
+</Base>

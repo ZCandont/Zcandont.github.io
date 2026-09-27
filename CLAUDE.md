@@ -9,7 +9,8 @@ Astro static site on GitHub Pages. The plan lives in `ROADMAP.md`; work one phas
 ## Non-negotiables
 - **Name on the site is "Zachary Candau."** Never "Candont" (that is only the GitHub handle).
 - **Confidentiality.** Current employer is a stealth, ITAR-regulated space startup: say only "founding analysis engineer, space startup, electric propulsion." No company name, no technical detail, no images. Zipline and the "undisclosed aerospace company" tooling project need written permission before real detail goes live.
-- **Privacy.** No phone number, and no referral emails, anywhere on the site or in the hosted resume PDF.
+- **Privacy.** No phone number and no referral emails anywhere in site copy (headings, body text, alt text). Exception, by Zach's explicit instruction: `public/resume.pdf` is published exactly as Zach provides it, phone number and referral contacts included; never edit that file without being asked.
+- **Resume page.** `/resume` embeds `public/resume.pdf` and links it for download; the file is always "the current resume," so a new resume means overwriting that one file at that exact path/name, not a new page. Zach places the file himself (uploading through GitHub's web UI and renaming there corrupted it once; adding it to the local `public/` folder directly is the working method). Do not edit or re-save the PDF in any way (including "cleanup" resaves) unless asked.
 - **Progressive enhancement.** All content is real DOM text and `<img>`. Particles/canvas are decoration only. `prefers-reduced-motion` and no-JS must show the complete page.
 - **Performance budget.** Lighthouse mobile at least 95 on all four categories. Particle engine at most about 15 KB gzipped. Fonts self-hosted (Geist, Geist Mono via Fontsource). No third-party requests.
 
