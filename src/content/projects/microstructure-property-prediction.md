@@ -8,6 +8,9 @@ role: "Individual project (SE 232 final)"
 teamSize: 1
 tools: [Python, PyTorch, ResNet, scikit-learn, Google Colab (A100)]
 featured: true
+cover: "/images/projects/microstructure-ml/p2-parity.jpeg"
+coverAlt: "Parity plot of predicted versus true material property"
+coverNegative: true
 links:
   - { label: "Code + full report", url: "https://github.com/ZCandont/micro2d-microstructure-ml" }
 ---

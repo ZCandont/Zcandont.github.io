@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import { getProjects } from '../lib/projects';
+
+const { caseStudies, inProgress, earlier } = await getProjects();
+---
+<Base
+  title="Portfolio | Zachary Candau"
+  description="Every project by Zachary Candau: full case studies, current projects with reports in progress, and earlier work."
+>
+  <section class="case-header portfolio-header">
+    <div class="wrap">
+      <h1 data-particle-target>Portfolio</h1>
+      <p class="lead">Every project, from finished case studies to the reports still being written.</p>
+    </div>
+  </section>
+
+  <section class="portfolio-block" aria-labelledby="pf-case">
+    <div class="wrap">
+      <h2 id="pf-case" class="section-sub" data-particle-target>Case studies</h2>
+      <ul class="deck">
+        {caseStudies.map((p) => (
+          <li>
+            <a class="exposure card" href={p.href} data-storm>
+              {p.cover && (
+                <span class="plate">
+                  <img class:list={{ negative: p.negative }} src={p.cover} alt={p.coverAlt ?? ''} loading="lazy" decoding="async">
+                </span>
+              )}
+              <span class="code">{p.code.map((c) => <span>{c}</span>)}</span>
+              <span class="exposure-title">{p.title}</span>
+              <span class="exposure-text">{p.text}</span>
+              <span class="mark">Case study</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="portfolio-block" aria-labelledby="pf-now">
+    <div class="wrap">
+      <h2 id="pf-now" class="section-sub" data-particle-target>In progress</h2>
+      <ul class="manifest">
+        {inProgress.map((p) => (
+          <li>
+            <a href={p.href} data-storm>
+              <span class="lane-core" aria-hidden="true"></span>
+              <span class="manifest-title">{p.title}</span>
+              <span class="code">{p.code.slice(0, 2).map((c) => <span>{c}</span>)}</span>
+              <span class="mark">Report in progress</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="portfolio-block" aria-labelledby="pf-earlier">
+    <div class="wrap">
+      <h2 id="pf-earlier" class="section-sub" data-particle-target>Earlier work</h2>
+      <ol class="index">
+        {earlier.map((p) => (
+          <li>
+            <span class="code">{p.code.map((c) => <span>{c}</span>)}</span>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+            <span class="mark">Write-up soon</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</Base>

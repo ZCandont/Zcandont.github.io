@@ -8,6 +8,8 @@ role: "Project scoping, data sourcing, report author (team of 3)"
 teamSize: 3
 tools: [Python, PyTorch, CNNs, DataLoader pipelines]
 featured: true
+cover: "/images/projects/solar-flare/solar-samples.png"
+coverAlt: "Solar observatory images of one region of the sun in ten wavelengths"
 links:
   - { label: "Code + full report", url: "https://github.com/ZCandont/solar-flare-cnn" }
 ---

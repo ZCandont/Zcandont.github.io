@@ -1,57 +1,90 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import { getProjects } from '../lib/projects';
+import iconResume from '@tabler/icons/outline/file-cv.svg?raw';
+import iconGithub from '@tabler/icons/outline/brand-github.svg?raw';
+import iconLinkedin from '@tabler/icons/outline/brand-linkedin.svg?raw';
+import iconLinktree from '@tabler/icons/outline/brand-linktree.svg?raw';
 
-// Projects with a full case-study page (src/content/projects/). Cards link to /projects/<slug>.
-const caseStudies = await getCollection('projects');
-// Featured first, then newest first, so the latest highlighted project leads the grid.
-const fromCollection = caseStudies
-  .sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || Number(b.data.year) - Number(a.data.year))
-  .map((p) => ({
-    title: p.data.title,
-    meta: `${p.data.role.split(',')[0].split('(')[0].trim()}, ${p.data.year}`,
-    text: p.data.summary,
-    href: `/projects/${p.id}/`,
-  }));
+const { all, caseStudies, inProgress } = await getProjects();
+const featured = caseStudies.filter((p) => p.featured);
 
-// Remaining projects: shell copy until each gets its own case-study page.
-const shellOnly = [
-  { title: 'Stepped-lap repair patch', meta: 'Composite NDE and Repair Lab, 2023', text: 'Designed a fiberglass repair joint, modeled its load path with a Volkersen analysis, and tested it past 10 kN in tension.' },
-  { title: 'Ultrasonic C-scan', meta: 'Structural Health Monitoring Lab, 2023', text: 'Built an immersion C-scan setup and analysis code that maps disbond defects in a composite wing skin.' },
-  { title: 'FSAE rear wing', meta: 'Triton Racing, 2022', text: 'Designed a multi-element rear wing for low-speed downforce. The car finished 8th overall and 8th in efficiency.' },
+// Hero launch pads: one primary (resume) and the three profiles.
+const pads = [
+  { label: 'Resume', href: '/resume', icon: iconResume, primary: true },
+  { label: 'GitHub', href: 'https://github.com/ZCandont', icon: iconGithub },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/zachary-candau/', icon: iconLinkedin },
+  { label: 'Linktree', href: 'https://linktr.ee/zcandont', icon: iconLinktree },
 ];
-
-const work = [...fromCollection, ...shellOnly];
 
 // Experience timeline, newest first. Skills are short tags only, not a recap of the work itself.
 const experience = [
-  { range: '09/2026 to Present', role: 'Founding Analysis Engineer', org: 'Stealth Space Startup', skills: ['COMSOL FEA', 'Design verification', 'R&D', 'Prototyping'] },
+  { range: '09/2026 to Present', role: 'Founding Analysis Engineer', org: 'Stealth Space Startup', skills: ['COMSOL FEA', 'Design verification', 'R&D', 'Prototyping'], current: true },
   { range: '05/2026 to 09/2026', role: 'Mechanical Engineering Intern', org: 'Zipline International', skills: ['Composites analysis', 'Tooling design', 'Electronics layout'] },
   { range: '01/2024 to 06/2024', role: 'Chief Engineer, Senior Design (UAV Wing)', org: 'UC San Diego', skills: ['CATIA', 'SolidWorks', 'Abaqus FEA', 'Leadership'] },
   { range: '01/2023 to 06/2024', role: 'Instructional Assistant', org: 'UCSD Structural Engineering Dept.', skills: ['Teaching', 'Mentorship', 'Assessment design'] },
   { range: '01/2023 to 06/2023', role: 'Undergraduate Research Lab Assistant', org: 'Advanced Aerospace Composites Laboratory', skills: ['Data analysis', 'Test setup design', 'Signal processing', 'Ultrasonic NDE'] },
   { range: '10/2020 to 06/2022', role: 'Aerodynamicist', org: 'UCSD Triton Racing, Formula SAE', skills: ['SolidWorks', 'CATIA', 'FEA', 'CFD'] },
 ];
+
+// Skills highlight: every skill points at the work that proves it (case studies link, roles and shell projects don't yet).
+const cs = Object.fromEntries(all.map((c) => [c.id, { label: c.data.title, href: `/projects/${c.id}/` }]));
+const skills: { name: string; proof: { label: string; href?: string }[] }[] = [
+  { name: 'Finite element analysis', proof: [{ label: 'COMSOL, founding analysis engineer' }, cs['uav-composite-wing'], { label: 'Triton Racing FSAE' }] },
+  { name: 'Composite structures', proof: [cs['uav-composite-wing'], cs['composite-wing-structural-analysis'], { label: 'Stepped-lap repair patch' }, { label: 'Composites analysis, Zipline' }] },
+  { name: 'CAD', proof: [cs['uav-composite-wing'], cs['composite-bonding-fixture'], { label: 'CATIA, Senior Design and FSAE' }] },
+  { name: 'Tooling and fixtures', proof: [cs['composite-bonding-fixture'], { label: 'Tooling design, Zipline' }] },
+  { name: 'Test design and NDE', proof: [cs['uav-composite-wing'], { label: 'Ultrasonic C-scan' }, { label: 'Test setup design, composites lab' }] },
+  { name: 'Python and machine learning', proof: [cs['microstructure-property-prediction'], cs['solar-flare-cnn']] },
+  { name: 'MATLAB', proof: [cs['uav-composite-wing'], cs['composite-wing-structural-analysis']] },
+  { name: 'Aerodynamics and CFD', proof: [{ label: 'FSAE rear wing' }, { label: 'Aerodynamicist, Triton Racing' }] },
+  { name: 'Leadership and teaching', proof: [cs['uav-composite-wing'], { label: 'Instructional Assistant, UCSD' }] },
+];
 ---
 <Base
   title="Zachary Candau | Aerospace Engineer"
   description="Portfolio of Zachary Candau, an aerospace engineer working on composite structures, structural analysis and electric propulsion."
 >
-  <section class="hero">
-    <div class="wrap">
-      <h1>Zachary Candau</h1>
-      <p class="lead">Aerospace engineer. I design, analyze and test composite structures and space hardware.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="#projects">View work</a>
-        <a class="btn btn-ghost" href="#contact">Contact</a>
+  <section class="hero" aria-labelledby="hero-name">
+    <div class="wrap hero-grid">
+      <h1 id="hero-name" class="hero-name" data-converge><span>Zachary</span> <span>Candau</span></h1>
+      <div class="hero-side">
+        <p class="lead">Aerospace engineer. I design, analyze and test composite structures and space hardware.</p>
+        <ul class="fields" aria-label="Fields">
+          <li>Aerospace</li>
+          <li>Astrospace</li>
+          <li>Automotive</li>
+        </ul>
       </div>
+      <div class="hero-actions">
+        {pads.map((b) => (
+          <a class:list={['pad', { 'pad-primary': b.primary }]} href={b.href} rel={b.primary ? undefined : 'me noopener'} data-burst>
+            <span class="pad-icon" aria-hidden="true" set:html={b.icon} />
+            <span>{b.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+    <ul class="lane" aria-label="Current projects">
+      {inProgress.map((p, i) => (
+        <li style={`--i:${i};--row:${i % 3}`}>
+          <a href={p.href}>
+            <span class="lane-core" aria-hidden="true"></span>
+            <span class="lane-title">{p.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="wrap now">
+      <span class="now-label">Now</span>
+      <span>Founding analysis engineer, space startup, electric propulsion</span>
     </div>
   </section>
 
   <section id="about">
     <div class="wrap about-grid">
       <div>
-        <h2>About</h2>
+        <h2 data-particle-target>About</h2>
         <p class="prose">
           I'm an aerospace engineer focused on composite structures, structural analysis and hands-on testing.
           I hold a B.S. in Structural Engineering from UC San Diego, am completing my M.S. there in advanced
@@ -66,79 +99,98 @@ const experience = [
           of these aspects.
         </p>
       </div>
-      <div class="about-photos">
-        <img src="/images/about/profile-palace-of-fine-arts.jpg" alt="Zachary Candau at the Palace of Fine Arts, San Francisco, at night" width="1200" height="1600" loading="eager">
-      </div>
+      <figure class="plate about-photo">
+        <img src="/images/about/profile-palace-of-fine-arts.jpg" alt="Zachary Candau at the Palace of Fine Arts, San Francisco, at night" width="1200" height="1600" loading="lazy" decoding="async">
+        <figcaption>Palace of Fine Arts, San Francisco</figcaption>
+      </figure>
     </div>
   </section>
 
   <section id="experience">
     <div class="wrap">
-      <h2>Experience</h2>
+      <h2 data-particle-target>Experience</h2>
       <ol class="timeline">
         {experience.map((e) => (
-          <li>
-            <span class="meta">{e.range}</span>
-            <h3>{e.role}</h3>
-            <p>{e.org}</p>
-            <ul class="skill-tags">
-              {e.skills.map((s) => <li>{s}</li>)}
-            </ul>
+          <li class:list={{ current: e.current }}>
+            <span class="when">{e.range}</span>
+            <div class="what">
+              <h3>{e.role}</h3>
+              <p>{e.org}</p>
+              <ul class="skill-tags">
+                {e.skills.map((s) => <li>{s}</li>)}
+              </ul>
+            </div>
           </li>
         ))}
       </ol>
-      <p class="prose"><a href="/resume">See the full resume &rarr;</a></p>
+      <p class="more"><a href="/resume">See the full resume</a></p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2 data-particle-target>Skills</h2>
+      <dl class="skills">
+        {skills.map((s) => (
+          <div>
+            <dt>{s.name}</dt>
+            <dd>
+              <ul>
+                {s.proof.map((p) => <li>{p.href ? <a href={p.href}>{p.label}</a> : p.label}</li>)}
+              </ul>
+            </dd>
+          </div>
+        ))}
+      </dl>
     </div>
   </section>
 
   <section id="projects">
     <div class="wrap">
-      <h2>Projects</h2>
+      <h2 data-particle-target>Projects</h2>
 
-      <h3 class="section-sub">Current</h3>
-      <div class="orbit" role="list">
-        {fromCollection.map((p) => (
-          <a role="listitem" class="orbit-node" href={p.href}>{p.title}</a>
-        ))}
-      </div>
-
-      <h3 class="section-sub">All projects</h3>
-      <ul class="work">
-        {work.map((p) => (
+      <h3 class="section-sub">Featured</h3>
+      <ul class="current">
+        {featured.map((p) => (
           <li>
-            <article>
-              <span class="meta">{p.meta}</span>
-              <h3>{p.title}</h3>
-              <p>{p.text}</p>
-              {p.href && <p class="case-link"><a href={p.href}>Read case study &rarr;</a></p>}
-              {p.code && <p><a href={p.code} rel="noopener">Code</a></p>}
-            </article>
+            <a class="exposure" href={p.href}>
+              {p.cover && (
+                <span class="plate">
+                  <img class:list={{ negative: p.negative }} src={p.cover} alt={p.coverAlt ?? ''} loading="lazy" decoding="async">
+                </span>
+              )}
+              <span class="code">{p.code.map((c) => <span>{c}</span>)}</span>
+              <span class="exposure-title">{p.title}</span>
+              <span class="exposure-text">{p.text}</span>
+            </a>
           </li>
         ))}
       </ul>
+      <p class="more-work"><a class="pad" href="/portfolio" data-burst><span>Open the full portfolio</span></a></p>
     </div>
   </section>
 
   <section id="gallery">
     <div class="wrap">
-      <h2>Gallery</h2>
+      <h2 data-particle-target>Gallery</h2>
       <ul class="album">
-        <li><img src="/images/gallery/team-poster-presentation.jpg" alt="Zachary Candau and his senior design team presenting their composite UAV wing project at a poster session" loading="lazy"></li>
-        <li><img src="/images/gallery/ppe-lab.jpg" alt="Zachary Candau in full PPE, respirator and gloves, in a materials lab" loading="lazy"></li>
+        <li class="plate"><img src="/images/gallery/team-poster-presentation.jpg" alt="Zachary Candau and his senior design team presenting their composite UAV wing project at a poster session" loading="lazy" decoding="async"></li>
+        <li class="plate"><img src="/images/gallery/ppe-lab.jpg" alt="Zachary Candau in full PPE, respirator and gloves, in a materials lab" loading="lazy" decoding="async"></li>
       </ul>
     </div>
   </section>
 
-  <section id="contact">
+  <section id="contact" class="contact">
     <div class="wrap">
-      <h2>Contact</h2>
+      <h2 data-particle-target>Contact</h2>
       <p class="prose">Open to conversations about engineering roles, research and collaboration.</p>
-      <div class="contact-links">
-        <a href="mailto:zbcandau@gmail.com">zbcandau@gmail.com</a>
-        <a href="/resume">Resume</a>
-        <a href="https://www.linkedin.com/in/zachary-candau/" rel="me noopener">LinkedIn</a>
-        <a href="https://linktr.ee/zcandont" rel="me noopener">Linktree</a>
-      </div>
+      <a class="email" href="mailto:zbcandau@gmail.com">zbcandau@gmail.com</a>
+      <ul class="contact-links">
+        <li><a href="https://www.linkedin.com/in/zachary-candau/" rel="me noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/ZCandont" rel="me noopener">GitHub</a></li>
+        <li><a href="https://linktr.ee/zcandont" rel="me noopener">Linktree</a></li>
+        <li><a href="/resume">Resume</a></li>
+      </ul>
     </div>
   </section>
 </Base>

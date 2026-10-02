@@ -1,5 +1,5 @@
 ---
-import '@fontsource-variable/geist';
+import '@fontsource-variable/archivo/wdth.css';
 import '@fontsource-variable/geist-mono';
 import '../styles/global.css';
 
@@ -17,7 +17,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#05070f" />
+    <meta name="theme-color" content="#03050b" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
@@ -25,6 +25,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary" />
+    <!-- Motion class: set before first paint so the hero name can wait for its particles.
+         No JS or reduced motion means no class, so the name is simply there.
+         storm-in: this page was opened from the portfolio's particle storm; content waits for it. -->
+    <script is:inline>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('motion');
+        try {
+          if (sessionStorage.getItem('storm')) {
+            sessionStorage.removeItem('storm');
+            document.documentElement.classList.add('storm-in');
+          }
+        } catch (e) {}
+      }
+    </script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -35,7 +49,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           <ul>
             <li><a href="/#about">About</a></li>
             <li><a href="/#experience">Experience</a></li>
-            <li><a href="/#projects">Projects</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
             <li><a href="/resume">Resume</a></li>
             <li><a href="/#contact">Contact</a></li>
           </ul>
@@ -46,7 +60,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <footer class="site-footer">
-      <div class="wrap">&copy; {new Date().getFullYear()} Zachary Candau</div>
+      <div class="wrap">
+        <span>&copy; {new Date().getFullYear()} Zachary Candau</span>
+        <span class="footer-hint">Move or drag through the sky. Hold to fire.</span>
+      </div>
     </footer>
     <script>
       import '../scripts/particles.ts';

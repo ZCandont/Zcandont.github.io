@@ -8,6 +8,8 @@ role: "Technical Lead (design phase), then Team Lead (analysis and manufacturing
 teamSize: 5
 tools: [SolidWorks, Abaqus, MATLAB, Carbon fiber layup, Vacuum bagging]
 featured: true
+cover: "/images/projects/uav-composite-wing/vacuum-bag-layup.jpg"
+coverAlt: "Team members vacuum-bagging the wing skin over its foam core"
 links: []
 ---
 

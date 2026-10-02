@@ -1,0 +1,590 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-02T07:37:05+00:00",
+  "title": "Design System: Zachary Candau",
+  "extensions": {
+    "colorMeta": {
+      "void": {
+        "role": "neutral",
+        "displayName": "Void",
+        "canonical": "oklch(11.5% 0.017 264)",
+        "tonalRamp": [
+          "#080b13",
+          "#20242d",
+          "#3b4049",
+          "#595e68",
+          "#787d88",
+          "#999faa",
+          "#bec4d0",
+          "#e9effb"
+        ],
+        "cssVar": "--bg"
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Plate",
+        "canonical": "oklch(15.7% 0.027 269)",
+        "tonalRamp": [
+          "#070b16",
+          "#1f2431",
+          "#3a3f4e",
+          "#575d6d",
+          "#777d8e",
+          "#979eb0",
+          "#bdc4d6",
+          "#e8eefe"
+        ],
+        "cssVar": "--card"
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(25.6% 0.047 267)",
+        "tonalRamp": [
+          "#04091f",
+          "#1a233b",
+          "#353f59",
+          "#525d79",
+          "#717d9a",
+          "#919ebd",
+          "#b7c4e4",
+          "#e8eeff"
+        ],
+        "cssVar": "--border"
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "oklch(31.8% 0.056 268)",
+        "tonalRamp": [
+          "#030822",
+          "#18223f",
+          "#333f5e",
+          "#505d7e",
+          "#6f7d9f",
+          "#8f9ec2",
+          "#b4c4e9",
+          "#e8eeff"
+        ],
+        "cssVar": "--rule"
+      },
+      "starlight": {
+        "role": "neutral",
+        "displayName": "Starlight",
+        "canonical": "oklch(94.7% 0.015 261)",
+        "tonalRamp": [
+          "#080b12",
+          "#20242b",
+          "#3b4048",
+          "#595e66",
+          "#787e86",
+          "#999fa8",
+          "#bfc4ce",
+          "#e9eff9"
+        ],
+        "cssVar": "--fg"
+      },
+      "haze": {
+        "role": "neutral",
+        "displayName": "Haze",
+        "canonical": "oklch(72.9% 0.040 262)",
+        "tonalRamp": [
+          "#030a1c",
+          "#192437",
+          "#344055",
+          "#515e74",
+          "#717e95",
+          "#919fb8",
+          "#b6c5df",
+          "#e6effe"
+        ],
+        "cssVar": "--muted"
+      },
+      "dim-haze": {
+        "role": "neutral",
+        "displayName": "Dim Haze",
+        "canonical": "oklch(60.2% 0.043 264)",
+        "tonalRamp": [
+          "#040a1d",
+          "#192439",
+          "#344057",
+          "#515e76",
+          "#717d97",
+          "#919fba",
+          "#b6c4e1",
+          "#e7efff"
+        ],
+        "cssVar": "--dim"
+      },
+      "ion-blue": {
+        "role": "primary",
+        "displayName": "Ion Blue",
+        "canonical": "oklch(78.9% 0.133 231)",
+        "tonalRamp": [
+          "#000d15",
+          "#022838",
+          "#05465e",
+          "#0c6688",
+          "#1589b4",
+          "#23ace1",
+          "#74d1fd",
+          "#dcf3fe"
+        ],
+        "cssVar": "--accent"
+      },
+      "deep-ion": {
+        "role": "primary",
+        "displayName": "Deep Ion",
+        "canonical": "oklch(57.6% 0.232 262)",
+        "tonalRamp": [
+          "#000728",
+          "#001c5c",
+          "#043593",
+          "#094fd1",
+          "#2971fd",
+          "#689cfd",
+          "#a5c5fe",
+          "#e6efff"
+        ],
+        "cssVar": "--accent-deep"
+      },
+      "ember": {
+        "role": "secondary",
+        "displayName": "Ember",
+        "canonical": "oklch(72.5% 0.182 46)",
+        "tonalRamp": [
+          "#190500",
+          "#3f1600",
+          "#6a2900",
+          "#983f02",
+          "#c85504",
+          "#f67224",
+          "#fcaf8b",
+          "#feeae0"
+        ],
+        "cssVar": "--ember"
+      },
+      "ember-hot": {
+        "role": "secondary",
+        "displayName": "Ember Hot",
+        "canonical": "oklch(80.4% 0.13 50)",
+        "tonalRamp": [
+          "#1d0700",
+          "#451a00",
+          "#722f05",
+          "#a24a16",
+          "#d2672f",
+          "#ff8a4f",
+          "#ffb894",
+          "#ffece2"
+        ],
+        "usage": "Hover state of ember fills only (primary button, primary launch pad)."
+      },
+      "white-hot": {
+        "role": "neutral",
+        "displayName": "White Hot",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": [
+          "#111111",
+          "#2b2b2b",
+          "#474747",
+          "#666666",
+          "#878787",
+          "#ababab",
+          "#d1d1d1",
+          "#ffffff"
+        ],
+        "usage": "Center of light cores and the sweep over the ember pad (45%). Never text, fill or border."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The hero name and the portfolio title; Archivo at font-stretch 125%, caps."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section heads, case/resume h1, sub-section heads, in-progress manifest titles, the contact email; expanded caps."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Role, skill and project titles, sentence case, 108 to 115% wide."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default text."
+      },
+      "body-lead": {
+        "displayName": "Prose",
+        "purpose": "Prose paragraphs in haze, max 66ch."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Launch-pad labels (0.95rem) and lane titles (clamp(0.95rem, 1.3vw, 1.1rem)); caps, 112% wide."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons and field tags, caps, 112% wide."
+      },
+      "data": {
+        "displayName": "Data",
+        "purpose": "Geist Mono for dates, years, codes, counts and the NOW label only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ember-glow",
+        "value": "0 10px 28px -14px var(--ember)",
+        "purpose": "Soft emitted glow under the primary button."
+      },
+      {
+        "name": "pad-glow",
+        "value": "0 14px 34px -16px var(--ember)",
+        "purpose": "Emitted glow under the primary launch pad."
+      },
+      {
+        "name": "knockout-ring",
+        "value": "0 0 0 4px var(--bg)",
+        "purpose": "Cuts timeline dots out of the trail line."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one easing curve for state transitions (--ease-out)."
+      },
+      {
+        "name": "button-lift",
+        "value": "translateY(-2px) plus overlay opacity, 0.25s ease-out",
+        "purpose": "Button hover; active presses to scale(0.98)."
+      },
+      {
+        "name": "rule-trace",
+        "value": "scaleX 0 to 1, 0.6s ease-out",
+        "purpose": "Index and skill row rules on hover."
+      },
+      {
+        "name": "expose",
+        "value": "scaleY or scaleX 0 to 1 on animation-timeline: view()",
+        "purpose": "Timeline trail (entry 10% to cover 65%) and skill/index rules (entry 0% to cover 35%) expose on scroll; only under html.motion and @supports."
+      },
+      {
+        "name": "name-expose",
+        "value": "opacity 0 to 0.55 (45%) to 1, scale 0.985 to 1, 2.6s cubic-bezier(0.33, 0, 0.2, 1) on is-formed; name-in 0.9s failsafe at 6s",
+        "purpose": "Hero name exposes slowly while the particle passes land."
+      },
+      {
+        "name": "gather-dim",
+        "value": "name spans to opacity 0.18, 0.5s ease-out",
+        "purpose": "Hovering the name hands it back to the particles."
+      },
+      {
+        "name": "drift",
+        "value": "translate loop of a few px, 7 to 11.5s, staggered negative delays",
+        "purpose": "Exposures, case cards and lane links float in place."
+      },
+      {
+        "name": "ping",
+        "value": "scale 1 to 3, opacity 0.8 to 0, 2.8s infinite",
+        "purpose": "Ring around the current timeline role."
+      },
+      {
+        "name": "particle-trail",
+        "value": "canvas destination-out fade rgba(0,0,0,0.28) per frame, 'lighter' compositing",
+        "purpose": "Long-exposure trails; blue and orange add toward white."
+      },
+      {
+        "name": "pad-lift",
+        "value": "translateY(-3px), 0.35s ease-out; active scale(0.97)",
+        "purpose": "Launch-pad hover and focus."
+      },
+      {
+        "name": "light-sweep",
+        "value": "105deg gradient band translateX(-110%) to 110%, 0.9s ease-out",
+        "purpose": "Light crossing a launch pad on hover."
+      },
+      {
+        "name": "icon-tilt",
+        "value": "scale(1.18) rotate(-8deg), 0.5s ease-out",
+        "purpose": "Launch-pad icon on hover."
+      },
+      {
+        "name": "lane-cross",
+        "value": "translateX(-24rem) to 100vw, 44s + 6s per row (70s on phones), linear infinite; paused on hover, focus-within or .parked",
+        "purpose": "Current projects crossing the hero band."
+      },
+      {
+        "name": "core-pulse",
+        "value": "scale 1 to 1.45, 2.6s ease-in-out infinite, half-cycle offset",
+        "purpose": "Light cores in the in-progress manifest."
+      },
+      {
+        "name": "storm-out",
+        "value": "main and footer opacity 0 (0.6s), scale 0.985 (0.8s), ease-out",
+        "purpose": "Page fades while the storm swirls off the clicked card."
+      },
+      {
+        "name": "storm-in",
+        "value": "main held at opacity 0; fades in 1.2s on storm-done; 1s failsafe at 3.2s",
+        "purpose": "Destination content waits for the storm to converge on its h1."
+      },
+      {
+        "name": "back-nudge",
+        "value": "arrow translateX(-3px), 0.35s ease-out",
+        "purpose": "Back-control hover."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "nav-compact",
+        "value": "40rem (max-width)",
+        "purpose": "Brand hides, meta grid stacks, pads two-by-two, lane three rows."
+      },
+      {
+        "name": "timeline-stack",
+        "value": "44rem (max-width)"
+      },
+      {
+        "name": "gutter-wide",
+        "value": "48rem"
+      },
+      {
+        "name": "two-column",
+        "value": "52rem"
+      },
+      {
+        "name": "hero-side",
+        "value": "60rem"
+      }
+    ],
+    "typeLadder": [
+      {
+        "value": "0.72rem",
+        "use": "codes, marks, NOW"
+      },
+      {
+        "value": "0.75rem",
+        "use": "captions, field tags, table heads, footer hint"
+      },
+      {
+        "value": "0.8rem",
+        "use": "skill tags, timeline dates"
+      },
+      {
+        "value": "0.85rem",
+        "use": "button labels, brand, back control, footer"
+      },
+      {
+        "value": "0.9rem",
+        "use": "nav links"
+      },
+      {
+        "value": "0.95rem",
+        "use": "launch pads, NOW strip, tables"
+      },
+      {
+        "value": "1rem",
+        "use": "body"
+      },
+      {
+        "value": "1.1rem",
+        "use": "prose"
+      },
+      {
+        "value": "1.2rem",
+        "use": "case and resume lead"
+      }
+    ],
+    "zIndex": [
+      {
+        "name": "--z-stars",
+        "value": -1
+      },
+      {
+        "name": "--z-nav",
+        "value": 10
+      },
+      {
+        "name": "--z-skip",
+        "value": 20
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ember CTA on inner pages, one per view (Download PDF on the resume).",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Resume</a>",
+      "css": ".ds-btn-primary { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; padding: 0.85rem 1.35rem; border-radius: var(--radius, 3px); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-weight: 700; font-stretch: 112%; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: transform 0.25s cubic-bezier(0.16,1,0.3,1); border: 1px solid transparent; background: var(--ember, #ff7a2f); color: var(--bg, #03050b); box-shadow: 0 10px 28px -14px var(--ember, #ff7a2f); } .ds-btn-primary::after { content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity 0.25s cubic-bezier(0.16,1,0.3,1); background: #ffa06a; } .ds-btn-primary:hover { transform: translateY(-2px); } .ds-btn-primary:hover::after { opacity: 1; } .ds-btn-primary:active { transform: translateY(0) scale(0.98); } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent, #4cc9ff); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary destinations: case-study links, Open in new tab.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">GitHub</a>",
+      "css": ".ds-btn-ghost { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; padding: 0.85rem 1.35rem; border-radius: var(--radius, 3px); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-weight: 700; font-stretch: 112%; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: transform 0.25s cubic-bezier(0.16,1,0.3,1); border: 1px solid var(--rule, #26314f); color: var(--fg, #e8eef8); } .ds-btn-ghost::after { content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity 0.25s cubic-bezier(0.16,1,0.3,1); background: color-mix(in srgb, var(--accent, #4cc9ff) 14%, transparent); } .ds-btn-ghost:hover { transform: translateY(-2px); border-color: var(--accent, #4cc9ff); } .ds-btn-ghost:hover::after { opacity: 1; } .ds-btn-ghost:active { transform: translateY(0) scale(0.98); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--accent, #4cc9ff); outline-offset: 3px; }"
+    },
+    {
+      "name": "Launch Pad (Primary)",
+      "kind": "button",
+      "refersTo": "launch-pad-primary",
+      "description": "The hero's one ember control (Resume): Tabler icon, lift, white-hot sweep, pad glow; the engine bursts particles off its edges.",
+      "html": "<a class=\"ds-padp\" href=\"#\"><span class=\"ds-padp-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 3v4a1 1 0 0 0 1 1h4\"/><path d=\"M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2\"/><path d=\"M11 12.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0\"/><path d=\"M13 11l1.5 6l1.5 -6\"/></svg></span><span>Resume</span></a>",
+      "css": ".ds-padp { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; gap: 0.8rem; min-height: 3.6rem; padding: 1rem 1.6rem 1rem 1.25rem; border: 1px solid var(--rule, #26314f); border-radius: var(--radius, 3px); background: color-mix(in srgb, var(--bg, #03050b) 55%, transparent); color: var(--fg, #e8eef8); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-weight: 700; font-stretch: 112%; font-size: 0.95rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); } .ds-padp::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 30%, color-mix(in srgb, var(--accent, #4cc9ff) 38%, transparent) 50%, transparent 70%); transform: translateX(-110%); transition: transform 0.9s cubic-bezier(0.16,1,0.3,1); } .ds-padp::after { content: ''; position: absolute; inset: 0; z-index: -2; opacity: 0; background: color-mix(in srgb, var(--accent, #4cc9ff) 12%, transparent); transition: opacity 0.35s cubic-bezier(0.16,1,0.3,1); } .ds-padp:hover, .ds-padp:focus-visible { transform: translateY(-3px); border-color: var(--accent, #4cc9ff); } .ds-padp:hover::before, .ds-padp:focus-visible::before { transform: translateX(110%); } .ds-padp:hover::after, .ds-padp:focus-visible::after { opacity: 1; } .ds-padp:active { transform: translateY(0) scale(0.97); } .ds-padp:focus-visible { outline: 2px solid var(--accent, #4cc9ff); outline-offset: 3px; } .ds-padp-icon { display: inline-flex; width: 1.6rem; height: 1.6rem; flex: none; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-padp-icon svg { width: 100%; height: 100%; stroke-width: 1.6; } .ds-padp:hover .ds-padp-icon, .ds-padp:focus-visible .ds-padp-icon { transform: scale(1.18) rotate(-8deg); } .ds-padp { background: var(--ember, #ff7a2f); border-color: var(--ember, #ff7a2f); color: var(--bg, #03050b); box-shadow: 0 14px 34px -16px var(--ember, #ff7a2f); } .ds-padp::before { background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / 0.45) 50%, transparent 70%); } .ds-padp::after { background: #ffa06a; } .ds-padp:hover, .ds-padp:focus-visible { border-color: #ffa06a; }"
+    },
+    {
+      "name": "Launch Pad",
+      "kind": "button",
+      "refersTo": "launch-pad",
+      "description": "Outline hero control (GitHub, LinkedIn, Linktree) and the Open the full portfolio link.",
+      "html": "<a class=\"ds-pad\" href=\"#\"><span class=\"ds-pad-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5\"/></svg></span><span>GitHub</span></a>",
+      "css": ".ds-pad { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; gap: 0.8rem; min-height: 3.6rem; padding: 1rem 1.6rem 1rem 1.25rem; border: 1px solid var(--rule, #26314f); border-radius: var(--radius, 3px); background: color-mix(in srgb, var(--bg, #03050b) 55%, transparent); color: var(--fg, #e8eef8); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-weight: 700; font-stretch: 112%; font-size: 0.95rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); } .ds-pad::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 30%, color-mix(in srgb, var(--accent, #4cc9ff) 38%, transparent) 50%, transparent 70%); transform: translateX(-110%); transition: transform 0.9s cubic-bezier(0.16,1,0.3,1); } .ds-pad::after { content: ''; position: absolute; inset: 0; z-index: -2; opacity: 0; background: color-mix(in srgb, var(--accent, #4cc9ff) 12%, transparent); transition: opacity 0.35s cubic-bezier(0.16,1,0.3,1); } .ds-pad:hover, .ds-pad:focus-visible { transform: translateY(-3px); border-color: var(--accent, #4cc9ff); } .ds-pad:hover::before, .ds-pad:focus-visible::before { transform: translateX(110%); } .ds-pad:hover::after, .ds-pad:focus-visible::after { opacity: 1; } .ds-pad:active { transform: translateY(0) scale(0.97); } .ds-pad:focus-visible { outline: 2px solid var(--accent, #4cc9ff); outline-offset: 3px; } .ds-pad-icon { display: inline-flex; width: 1.6rem; height: 1.6rem; flex: none; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-pad-icon svg { width: 100%; height: 100%; stroke-width: 1.6; } .ds-pad:hover .ds-pad-icon, .ds-pad:focus-visible .ds-pad-icon { transform: scale(1.18) rotate(-8deg); }"
+    },
+    {
+      "name": "Back Control",
+      "kind": "nav",
+      "refersTo": "back-control",
+      "description": "Bordered back link with a Tabler arrow-left on inner pages.",
+      "html": "<a class=\"ds-back\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l14 0\"/><path d=\"M5 12l6 6\"/><path d=\"M5 12l6 -6\"/></svg>Back to portfolio</a>",
+      "css": ".ds-back { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 0.8rem 0.45rem 0.55rem; border: 1px solid var(--rule, #26314f); border-radius: var(--radius, 3px); color: var(--fg, #e8eef8); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-size: 0.85rem; font-weight: 600; text-decoration: none; } .ds-back svg { width: 1.1rem; height: 1.1rem; stroke-width: 1.8; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); } .ds-back:hover { border-color: var(--accent, #4cc9ff); } .ds-back:hover svg { transform: translateX(-3px); } .ds-back:focus-visible { outline: 2px solid var(--accent, #4cc9ff); outline-offset: 3px; }"
+    },
+    {
+      "name": "Field Tag",
+      "kind": "chip",
+      "refersTo": "field-tag",
+      "description": "The hero field labels.",
+      "html": "<ul class=\"ds-fields\"><li>Aerospace</li><li>Astrospace</li><li>Automotive</li></ul>",
+      "css": ".ds-fields { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; } .ds-fields li { padding: 0.4rem 0.75rem; border: 1px solid color-mix(in srgb, var(--accent, #4cc9ff) 45%, var(--rule, #26314f)); border-radius: var(--radius, 3px); color: var(--fg, #e8eef8); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-size: 0.75rem; font-weight: 650; font-stretch: 112%; letter-spacing: 0.08em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Skill Tag",
+      "kind": "chip",
+      "refersTo": "skill-tag",
+      "description": "Three to four short skill tags per timeline role.",
+      "html": "<ul class=\"ds-tags\"><li>Composite design</li><li>FEA</li><li>Testing</li></ul>",
+      "css": ".ds-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; margin: 0; padding: 0; } .ds-tags li { padding: 0.2rem 0.6rem; border: 1px solid var(--border, #19223a); border-radius: var(--radius, 3px); color: var(--muted, #9aa8c1); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-size: 0.8rem; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Sticky solid-sky bar with a hairline; expanded caps brand, haze links.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">Zachary Candau</a><nav><a href=\"#\">About</a><a href=\"#\">Experience</a><a href=\"#\">Projects</a><a href=\"#\">Resume</a><a href=\"#\">Contact</a></nav></header>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 4rem; padding-inline: 2rem; background: color-mix(in srgb, var(--bg, #03050b) 92%, transparent); border-bottom: 1px solid var(--border, #19223a); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); } .ds-brand { color: var(--fg, #e8eef8); font-weight: 800; font-size: 0.85rem; font-stretch: 125%; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; } .ds-nav nav { display: flex; gap: 2rem; } .ds-nav nav a { color: var(--muted, #9aa8c1); font-size: 0.9rem; text-decoration: none; } .ds-nav nav a:hover { color: var(--fg, #e8eef8); } .ds-nav a:focus-visible { outline: 2px solid var(--accent, #4cc9ff); outline-offset: 3px; border-radius: 3px; }"
+    },
+    {
+      "name": "Image Plate",
+      "kind": "card",
+      "refersTo": "image-plate",
+      "description": "The one frame for every photo and figure.",
+      "html": "<figure class=\"ds-plate\"><div class=\"ds-plate-img\"></div><figcaption>Palace of Fine Arts, San Francisco</figcaption></figure>",
+      "css": ".ds-plate { margin: 0; overflow: hidden; border: 1px solid var(--border, #19223a); border-radius: var(--radius, 3px); background: var(--card, #080c18); max-width: 20rem; } .ds-plate-img { aspect-ratio: 4 / 3; background: linear-gradient(135deg, #0c1428, #1a2440); } .ds-plate figcaption { padding: 0.7rem 0.9rem; color: var(--dim, #74819b); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-size: 0.75rem; letter-spacing: 0.03em; }"
+    },
+    {
+      "name": "Case Card",
+      "kind": "card",
+      "refersTo": "case-card",
+      "description": "/portfolio only: a project exposure on a translucent plate, staggered two-column deck, never three equal in a row.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-img\"></span><span class=\"ds-code\"><span>Hardware</span><span>2024</span></span><span class=\"ds-card-title\">UAV Composite Wing</span><span class=\"ds-card-text\">Led design, analysis and manufacturing of a carbon fiber UAV wing.</span><span class=\"ds-card-mark\">Case study</span></a>",
+      "css": ".ds-card { display: grid; gap: 0.85rem; max-width: 24rem; padding: 0.85rem 0.85rem 1.25rem; border: 1px solid var(--border, #19223a); border-radius: var(--radius, 3px); background: color-mix(in srgb, var(--card, #080c18) 72%, transparent); color: var(--fg, #e8eef8); text-decoration: none; font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); } .ds-card:hover { border-color: var(--rule, #26314f); } .ds-card:focus-visible { outline: 2px solid var(--accent, #4cc9ff); outline-offset: 3px; } .ds-card-img { aspect-ratio: 16 / 10; border: 1px solid var(--border, #19223a); border-radius: var(--radius, 3px); background: linear-gradient(135deg, #0c1428, #1a2440); } .ds-code { display: flex; gap: 0.85rem; font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent, #4cc9ff); } .ds-card-title { font-size: 1.25rem; font-weight: 700; font-stretch: 110%; line-height: 1.2; } .ds-card:hover .ds-card-title { color: var(--accent, #4cc9ff); } .ds-card-text { color: var(--muted, #9aa8c1); } .ds-card-mark { color: var(--accent, #4cc9ff); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Experience Timeline",
+      "kind": "custom",
+      "description": "Vertical light trail with dot markers; the current role is a ring (state by mark).",
+      "html": "<ol class=\"ds-tl\"><li class=\"ds-cur\"><span class=\"ds-when\">08/2025 to Present</span><span class=\"ds-what\">Founding Analysis Engineer</span></li><li><span class=\"ds-when\">06/2024 to 09/2024</span><span class=\"ds-what\">Mechanical Engineering Intern</span></li></ol>",
+      "css": ".ds-tl { position: relative; list-style: none; margin: 0; padding: 0 0 0 1.75rem; font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); } .ds-tl::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0.5rem; width: 1px; background: linear-gradient(var(--ember, #ff7a2f), var(--accent, #4cc9ff) 35%, var(--accent-deep, #1e6bff)); } .ds-tl li { position: relative; display: grid; gap: 0.35rem; padding-bottom: 2rem; } .ds-tl li::before { content: ''; position: absolute; left: calc(-1.75rem - 3.5px); top: 0.45rem; width: 8px; height: 8px; border-radius: 50%; background: var(--accent, #4cc9ff); box-shadow: 0 0 0 4px var(--bg, #03050b); } .ds-tl li.ds-cur::before { width: 13px; height: 13px; left: calc(-1.75rem - 6px); top: 0.2rem; background: var(--bg, #03050b); border: 2px solid var(--accent, #4cc9ff); box-sizing: border-box; } .ds-when { font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 0.8rem; color: var(--dim, #74819b); font-variant-numeric: tabular-nums; } .ds-cur .ds-when { color: var(--accent, #4cc9ff); } .ds-what { color: var(--fg, #e8eef8); font-weight: 700; font-stretch: 108%; font-size: 1.2rem; }"
+    },
+    {
+      "name": "Ruled Index Row",
+      "kind": "custom",
+      "description": "Project index row: mono code, title, trailing mark; the top rule traces on hover.",
+      "html": "<ol class=\"ds-index\"><li><span class=\"ds-code\"><span>Hardware</span><span>2025</span></span><a class=\"ds-title\" href=\"#\">UAV Composite Wing</a><span class=\"ds-mark\">Case study</span></li></ol>",
+      "css": ".ds-index { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--border, #19223a); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); } .ds-index li { position: relative; display: grid; grid-template-columns: 12rem 1fr auto; gap: 2rem; align-items: baseline; padding-block: 1.35rem; border-top: 1px solid var(--border, #19223a); } .ds-index li::before { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 1px; background: var(--accent, #4cc9ff); transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); } .ds-index li:hover::before { transform: scaleX(1); } .ds-code { display: flex; gap: 0.85rem; font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent, #4cc9ff); } .ds-code span + span::before { content: ''; display: inline-block; width: 1px; height: 0.8em; margin-right: 0.85rem; background: var(--rule, #26314f); } .ds-title { color: var(--fg, #e8eef8); font-weight: 700; font-stretch: 108%; font-size: 1.15rem; text-decoration: none; } .ds-index li:hover .ds-title { color: var(--accent, #4cc9ff); } .ds-title:focus-visible { outline: 2px solid var(--accent, #4cc9ff); outline-offset: 3px; } .ds-mark { color: var(--accent, #4cc9ff); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }"
+    },
+    {
+      "name": "In-Progress Manifest Row",
+      "kind": "custom",
+      "description": "Light core, expanded caps title, mark; cores alternate ion and ember and pulse.",
+      "html": "<ul class=\"ds-man\"><li><a href=\"#\"><span class=\"ds-core\"></span><span class=\"ds-man-title\">Quant Trading API</span><span class=\"ds-man-mark\">Report in progress</span></a></li><li><a href=\"#\"><span class=\"ds-core ds-ember\"></span><span class=\"ds-man-title\">Camera Gimbal Mount</span><span class=\"ds-man-mark\">Report in progress</span></a></li></ul>",
+      "css": ".ds-man { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--border, #19223a); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); } .ds-man a { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.5rem; padding: 1.3rem 0.25rem; border-top: 1px solid var(--border, #19223a); color: var(--fg, #e8eef8); text-decoration: none; } .ds-man a:hover .ds-man-title, .ds-man a:focus-visible .ds-man-title { color: var(--accent, #4cc9ff); } .ds-man a:focus-visible { outline: 2px solid var(--accent, #4cc9ff); outline-offset: 3px; } .ds-core { position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: radial-gradient(circle, #fff 0 18%, var(--accent, #4cc9ff) 40%, transparent 72%); animation: ds-pulse 2.6s ease-in-out infinite; } .ds-core.ds-ember { background: radial-gradient(circle, #fff 0 18%, var(--ember, #ff7a2f) 40%, transparent 72%); animation-delay: -1.3s; } @keyframes ds-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.45); } } .ds-man-title { font-size: 1.4rem; font-weight: 800; font-stretch: 125%; text-transform: uppercase; line-height: 1.1; } .ds-man-mark { color: var(--dim, #74819b); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Long Exposure",
+    "overview": "The site is a long exposure of an engineer in motion: everything that moves leaves a light trail, and the trail is the record. The ground is a void-black sky with a static star field drawn for every visitor. Color does not exist as paint on surfaces; it exists only as light. Ion blue is the structural light (links, rules, markers, data codes), ember orange is the energy light (the primary call to action, the NOW label, the hot end of a trail), and where the two cross on the particle canvas they add toward white.\n\nType carries the identity alongside the light. The name and section heads are Archivo pushed to its expanded width (125%) at weight 800 in caps, heavy and wide like a stencil on hardware. Body text is the same family at normal width. Geist Mono speaks only for data: dates, years, category codes and the NOW label. Structure is drawn with hairline rules and a single small radius; nothing floats on a shadowed card. State is shown by a mark (a ring, a traced rule, a streak), never by introducing a new hue.\n\nDensity is editorial: generous section spacing, then packed, ruled indexes where information is scanned (skills, the project index). The particle engine is decoration over a complete page. Every word is real DOM text, and no-JS and reduced-motion visitors see the finished page from the first paint. Interaction answers in the same language: the hero's launch pads lift and throw particles off their edges, current projects drift across the sky like ions, and opening a case study from the portfolio passes through a particle storm that re-forms on the next page's heading.",
+    "keyCharacteristics": [
+      "Dark only. One theme, a void-black sky with a fixed star field.",
+      "Two lights: ion blue structural, ember orange for CTAs and energy moments only.",
+      "Archivo Expanded 800 caps for the name and section heads; Geist Mono only for data.",
+      "Hairline rules and one 3px radius; flat surfaces, no card shadows.",
+      "State by mark, never by a new hue.",
+      "Motion animates only transform and opacity; scroll effects are CSS scroll-driven, never scroll listeners."
+    ],
+    "rules": [
+      {
+        "name": "The Light-Only Rule",
+        "body": "Color is emitted, never painted. Blue and orange appear as text, hairlines, markers, gradients and glows; surfaces stay void or plate. The only filled surfaces in a light color are the ember primary controls (one button or launch pad per view) and faint hover tints (12 to 14% ion blue).",
+        "section": "colors"
+      },
+      {
+        "name": "The Ember Budget Rule",
+        "body": "Ember is reserved for the primary call to action and energy moments (NOW, the email close, the hot end of a trail, alternate light cores). One ember button or ember launch pad per view.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mark-Not-Hue Rule",
+        "body": "State is a mark. The current role is a ring on the timeline, not a different color; a hovered row gets a traced rule; a linked index row says \"Case study\" in blue while an unlinked one says \"Write-up soon\" in dim; an in-progress project carries a \"Report in progress\" mark and a Status row in its meta grid, never a status color. Never add a hue to express state.",
+        "section": "colors"
+      },
+      {
+        "name": "The White-Core Rule",
+        "body": "White appears only where the two lights are brightest: the center of a light core and a sweep crossing an ember fill. It is never text, never a fill, never a border.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Widths Rule",
+        "body": "Expanded caps (125%) name things: the hero name, the portfolio title, section and sub-section heads, in-progress project names, the brand, the email close. Everything else is normal width or only slightly widened (108 to 115%) for titles, controls and labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The Readings-Only Mono Rule",
+        "body": "Geist Mono is used only for dates, years, codes, counts and the NOW label. Never for body, headings or buttons.",
+        "section": "typography"
+      },
+      {
+        "name": "The Light-Not-Lift Rule",
+        "body": "Nothing casts a shadow. A surface reads as forward because it emits (a glow, a brighter rule) or moves on hover, never because it sits on a drop shadow. Lift is a hover response of interactive controls only: 2px for buttons, 3px for launch pads. Cards, plates and rows never lift; they answer with a brighter rule.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the page dark only, on the void with the static star field behind everything.",
+      "Do use ion blue for structure (links, rules, markers, data) and ember only for the primary CTA and energy moments.",
+      "Do set the name and section heads in Archivo at 125% width, weight 800, caps; body in Archivo at normal width.",
+      "Do reserve Geist Mono for dates, years, category codes, counts and the NOW label.",
+      "Do use the one 3px radius on every rectangle, and 1px hairline or rule lines for structure.",
+      "Do express state with a mark: a ring, a traced rule, a text mark.",
+      "Do animate only transform and opacity, gate decorative motion behind the motion class, and drive scroll effects with CSS scroll timelines or IntersectionObserver.",
+      "Do frame every photo in an image plate with a dim caption.",
+      "Do keep text pairs at WCAG AA or better; dim haze is for small supporting text only.",
+      "Do take icons from Tabler outline, inlined as SVG at build time, and stay on the small-text ladder for sizes.",
+      "Do give every motion surface a complete static state: the lane becomes a list, storm links navigate, the name is simply there."
+    ],
+    "donts": [
+      "Don't introduce a light theme, a third accent hue, or a new hue to signal state.",
+      "Don't use deep ion as text; it is a glow color.",
+      "Don't put more than one ember button or ember launch pad in a view, or use ember for structural elements.",
+      "Don't use drop shadows, glass blur or shadowed cards; depth is light, and lift is a hover response of buttons and launch pads only.",
+      "Don't lay out three equal cards in a row or a uniform card grid; use ruled indexes and staggered exposures, with case cards only on /portfolio on the staggered two-column rule.",
+      "Don't use Geist Mono for headings, body or buttons.",
+      "Don't add window scroll listeners, animate layout properties, or use 100vh.",
+      "Don't let the particle canvas carry content; every word stays real DOM text and the page is complete without it.",
+      "Don't use white as text, fill or border; it exists only at the core of the light."
+    ]
+  }
+}

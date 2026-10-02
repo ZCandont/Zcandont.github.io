@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import iconBack from '@tabler/icons/outline/arrow-left.svg?raw';
 ---
 <Base
   title="Resume | Zachary Candau"
@@ -7,8 +8,8 @@ import Base from '../layouts/Base.astro';
 >
   <section class="case-header">
     <div class="wrap">
-      <a class="back" href="/#top">&larr; Home</a>
-      <h1>Resume</h1>
+      <a class="back" href="/"><Fragment set:html={iconBack} />Back home</a>
+      <h1 data-particle-target>Resume</h1>
       <p class="lead">Always the current version. Download it or open it directly.</p>
       <div class="actions">
         <a class="btn btn-primary" href="/resume.pdf" download>Download PDF</a>
