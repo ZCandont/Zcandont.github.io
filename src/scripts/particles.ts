@@ -180,12 +180,24 @@ function burst(r: DOMRect | null, x: number, y: number, n: number, c?: 0 | 1) {
   }
 }
 
-function addStorm(n: number, at: (k: number) => Pt) {
+// whole particles per frame for a fractional rate (frame-rate independent emission)
+const count = (x: number) => Math.floor(x) + (rand() < x % 1 ? 1 : 0);
+
+function addStorm(n: number, at: (k: number) => Pt, swirl = false) {
   for (let k = 0; k < n; k++) {
     const s = at(k);
     const p = make(s.x, s.y, rand() < 0.65 ? 0 : 1, 0.9, true);
-    p.vx = (rand() - 0.5) * 6;
-    p.vy = (rand() - 0.5) * 6;
+    if (swirl) {
+      // already circling the screen center, like the storm the last page ended in
+      const ex = s.x - W / 2;
+      const ey = s.y - H / 2;
+      const r = Math.sqrt(ex * ex + ey * ey) + 1;
+      p.vx = (-ey / r) * 8;
+      p.vy = (ex / r) * 8;
+    } else {
+      p.vx = (rand() - 0.5) * 6;
+      p.vy = (rand() - 0.5) * 6;
+    }
     p.storm = true;
     parts.push(p);
   }
@@ -250,6 +262,19 @@ async function init() {
     burstEl = el;
   }, { passive: true });
 
+  const fetched = new Set<string>();
+  const prefetch = (e: Event) => {
+    const a = (e.target as Element).closest?.('a[data-storm]') as HTMLAnchorElement | null;
+    if (!a || fetched.has(a.href)) return;
+    fetched.add(a.href);
+    const l = document.createElement('link');
+    l.rel = 'prefetch';
+    l.href = a.href;
+    document.head.append(l);
+  };
+  addEventListener('pointerover', prefetch, { passive: true });
+  addEventListener('focusin', prefetch);
+
   // storm out: the clicked card dissolves into a vortex, the page fades, then the report opens
   document.addEventListener('click', (e) => {
     const a = (e.target as Element).closest?.('a[data-storm]') as HTMLAnchorElement | null;
@@ -259,7 +284,7 @@ async function init() {
     html.classList.add('storm-out');
     const r = a.getBoundingClientRect();
     for (const p of parts) if (!p.job && !p.res) { p.storm = true; p.a = 0.9; }
-    addStorm(mobile ? 350 : 900, () => ({ x: r.left + rand() * r.width, y: r.top + rand() * r.height }));
+    addStorm(mobile ? 300 : 650, () => ({ x: r.left + rand() * r.width, y: r.top + rand() * r.height }));
     setTimeout(() => location.assign(a.href), 820);
   });
   // back/forward cache: a page restored mid-storm must come back whole
@@ -279,7 +304,6 @@ async function init() {
   let lastInside = 0;
   let last = performance.now();
   let acc = 0;
-  let clock = 0; // fixed 60 Hz timestep: high-refresh screens skip frames, slow ones substep
   let frames = 0;
   let rafId = 0;
   const paths: Path2D[] = [];
@@ -287,7 +311,11 @@ async function init() {
 
   // storm in: this page opened from a storm; swirl, then converge onto the heading while the content fades in
   if (stormIn) {
-    addStorm(mobile ? 350 : 900, () => ({ x: rand() * W, y: rand() * H }));
+    addStorm(mobile ? 300 : 650, () => {
+      const ang = rand() * Math.PI * 2;
+      const r = Math.min(W, H) * (0.15 + rand() * 0.33);
+      return { x: W / 2 + Math.cos(ang) * r, y: H / 2 + Math.sin(ang) * r };
+    }, true);
     await Promise.race([document.fonts?.ready, wait(1500)]);
     setTimeout(() => {
       const target = document.querySelector<HTMLElement>('.case-header h1, main h1');
@@ -371,16 +399,17 @@ async function init() {
   }
 
   function frame(now: number) {
-    const dt = now - last;
+    const dt = Math.min(Math.max(now - last, 1), 100);
     last = now;
-    clock = Math.min(clock + dt, 60);
-    if (clock < 16) {
-      rafId = requestAnimationFrame(frame);
-      return;
-    }
-    const steps = Math.min(3, Math.floor(clock / 16.67) || 1);
-    clock = Math.max(0, clock - steps * 16.67);
-    acc += steps * 16.67;
+    // variable timestep in 60 Hz units: every display frame draws (smooth on 120/144 Hz screens),
+    // and long frames split into substeps so the springs stay stable
+    const fr = dt / 16.67;
+    const steps = Math.ceil(fr);
+    const h = fr / steps;
+    const Dh = Math.pow(D, h);
+    const d97 = Math.pow(0.97, h);
+    const d975 = Math.pow(0.975, h);
+    acc += dt;
     // auto-quality: shed the ambient field, then the trails, if frames run long
     if (++frames === 60) {
       if (acc / 60 > 26) {
@@ -395,7 +424,7 @@ async function init() {
     const sy = scrollY;
     if (trails) {
       ctx!.globalCompositeOperation = 'destination-out';
-      ctx!.fillStyle = 'rgba(0,0,0,0.28)';
+      ctx!.fillStyle = `rgba(0,0,0,${1 - Math.pow(0.72, fr)})`;
       ctx!.fillRect(0, 0, W, H);
     } else ctx!.clearRect(0, 0, W, H);
     ctx!.globalCompositeOperation = 'lighter';
@@ -444,11 +473,11 @@ async function init() {
     if (ptr.on) {
       const vx = ptr.x - ptr.lx;
       const vy = ptr.y - ptr.ly;
-      if (ptr.lx > -1e3 && vx * vx + vy * vy > 30 && temps < 160) {
-        for (let k = 0; k < 2; k++) {
+      if (ptr.lx > -1e3 && (vx * vx + vy * vy) / (fr * fr) > 30 && temps < 160) {
+        for (let k = 0, n = count(2 * fr); k < n; k++) {
           const p = make(ptr.x, ptr.y, rand() < 0.75 ? 0 : 1, 0.8, true);
-          p.vx = -vx * 0.18 + (rand() - 0.5) * 1.2;
-          p.vy = -vy * 0.18 + (rand() - 0.5) * 1.2;
+          p.vx = (-vx / fr) * 0.18 + (rand() - 0.5) * 1.2;
+          p.vy = (-vy / fr) * 0.18 + (rand() - 0.5) * 1.2;
           p.life = 26 + rand() * 18;
           parts.push(p);
           temps++;
@@ -458,7 +487,7 @@ async function init() {
       ptr.ly = ptr.y;
     }
     if (ptr.down && temps < 700) {
-      for (let k = 0; k < 6; k++) {
+      for (let k = 0, n = count(6 * fr); k < n; k++) {
         const ang = (rand() - 0.5) * 0.55;
         const sp = 3 + rand() * 7;
         const p = make(ptr.x, ptr.y, rand() < 0.7 ? 0 : 1, 0.95, true);
@@ -486,8 +515,8 @@ async function init() {
             const ex = p.tx - p.x;
             const ey = p.ty - sy - p.y;
             const s = p.c ? -SWIRL : SWIRL;
-            p.vx = (p.vx + ex * K - ey * s) * D;
-            p.vy = (p.vy + ey * K + ex * s) * D;
+            p.vx = (p.vx + (ex * K - ey * s) * h) * Dh;
+            p.vy = (p.vy + (ey * K + ex * s) * h) * Dh;
             const v2 = p.vx * p.vx + p.vy * p.vy;
             if (v2 > VMAX * VMAX) {
               const k = VMAX / Math.sqrt(v2);
@@ -495,8 +524,8 @@ async function init() {
               p.vy *= k;
             }
           } else {
-            p.vx *= 0.97;
-            p.vy *= 0.97;
+            p.vx *= d97;
+            p.vy *= d97;
           }
         } else if (p.storm) {
           // vortex: orbit the screen center on a band, each particle on its own radius
@@ -505,10 +534,10 @@ async function init() {
           const r = Math.sqrt(ex * ex + ey * ey) + 1;
           const radial = (r - ring * (0.12 + p.dx * 0.7)) * 0.03;
           const sp = 7 + p.c * 4;
-          p.vx += ((-ey / r) * sp - (ex / r) * radial - p.vx) * 0.07;
-          p.vy += ((ex / r) * sp - (ey / r) * radial - p.vy) * 0.07;
+          p.vx += ((-ey / r) * sp - (ex / r) * radial - p.vx) * 0.07 * h;
+          p.vy += ((ex / r) * sp - (ey / r) * radial - p.vy) * 0.07 * h;
         } else if (p.res) {
-          if (++p.age > p.max && heroPts?.length) {
+          if ((p.age += h) > p.max && heroPts?.length) {
             const t = heroPts[(rand() * heroPts.length) | 0];
             p.x = p.px = t.x;
             p.y = p.py = t.y - sy;
@@ -517,11 +546,11 @@ async function init() {
             p.age = 0;
           }
         } else if (p.temp) {
-          p.vx *= 0.975;
-          p.vy *= 0.975;
+          p.vx *= d975;
+          p.vy *= d975;
         } else {
-          p.vx += (p.dx - p.vx) * 0.03;
-          p.vy += (p.dy - p.vy) * 0.03;
+          p.vx += (p.dx - p.vx) * 0.03 * h;
+          p.vy += (p.dy - p.vy) * 0.03 * h;
         }
         if (ptr.on) {
           const ex = p.x - ptr.x;
@@ -529,15 +558,15 @@ async function init() {
           const d2 = ex * ex + ey * ey;
           if (d2 < R * R && d2 > 1) {
             const d = Math.sqrt(d2);
-            const f = (1 - d / R) * (p.job ? 0.3 : 1);
+            const f = (1 - d / R) * (p.job ? 0.3 : 1) * h;
             p.vx += (ex / d) * f * 1.1 - (ey / d) * f * 0.9;
             p.vy += (ey / d) * f * 1.1 + (ex / d) * f * 0.9;
           }
         }
-        p.x += p.vx;
-        p.y += p.vy;
+        p.x += p.vx * h;
+        p.y += p.vy * h;
 
-        if (p.life !== Infinity && --p.life <= 0) {
+        if (p.life !== Infinity && (p.life -= h) <= 0) {
           parts.splice(i, 1);
           temps--;
           continue outer;

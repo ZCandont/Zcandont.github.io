@@ -21,7 +21,7 @@ const pads = [
 const experience = [
   { range: '09/2026 to Present', role: 'Founding Analysis Engineer', org: 'Stealth Space Startup', skills: ['COMSOL FEA', 'Design verification', 'R&D', 'Prototyping'], current: true },
   { range: '05/2026 to 09/2026', role: 'Mechanical Engineering Intern', org: 'Zipline International', skills: ['Composites analysis', 'Tooling design', 'Electronics layout'] },
-  { range: '01/2024 to 06/2024', role: 'Chief Engineer, Senior Design (UAV Wing)', org: 'UC San Diego', skills: ['CATIA', 'SolidWorks', 'Abaqus FEA', 'Leadership'] },
+  { range: '01/2024 to 06/2024', role: 'Chief Engineer, Senior Design (UAV Wing)', org: 'UC San Diego', skills: ['Composite layup', 'SolidWorks', 'Abaqus FEA', 'Leadership'] },
   { range: '01/2023 to 06/2024', role: 'Instructional Assistant', org: 'UCSD Structural Engineering Dept.', skills: ['Teaching', 'Mentorship', 'Assessment design'] },
   { range: '01/2023 to 06/2023', role: 'Undergraduate Research Lab Assistant', org: 'Advanced Aerospace Composites Laboratory', skills: ['Data analysis', 'Test setup design', 'Signal processing', 'Ultrasonic NDE'] },
   { range: '10/2020 to 06/2022', role: 'Aerodynamicist', org: 'UCSD Triton Racing, Formula SAE', skills: ['SolidWorks', 'CATIA', 'FEA', 'CFD'] },
@@ -32,7 +32,7 @@ const cs = Object.fromEntries(all.map((c) => [c.id, { label: c.data.title, href:
 const skills: { name: string; proof: { label: string; href?: string }[] }[] = [
   { name: 'Finite element analysis', proof: [{ label: 'COMSOL, founding analysis engineer' }, cs['uav-composite-wing'], { label: 'Triton Racing FSAE' }] },
   { name: 'Composite structures', proof: [cs['uav-composite-wing'], cs['composite-wing-structural-analysis'], { label: 'Stepped-lap repair patch' }, { label: 'Composites analysis, Zipline' }] },
-  { name: 'CAD', proof: [cs['uav-composite-wing'], cs['composite-bonding-fixture'], { label: 'CATIA, Senior Design and FSAE' }] },
+  { name: 'CAD', proof: [cs['uav-composite-wing'], cs['composite-bonding-fixture'], { label: 'CATIA, FSAE' }] },
   { name: 'Tooling and fixtures', proof: [cs['composite-bonding-fixture'], { label: 'Tooling design, Zipline' }] },
   { name: 'Test design and NDE', proof: [cs['uav-composite-wing'], { label: 'Ultrasonic C-scan' }, { label: 'Test setup design, composites lab' }] },
   { name: 'Python and machine learning', proof: [cs['microstructure-property-prediction'], cs['solar-flare-cnn']] },
@@ -49,12 +49,16 @@ const skills: { name: string; proof: { label: string; href?: string }[] }[] = [
     <div class="wrap hero-grid">
       <h1 id="hero-name" class="hero-name" data-converge><span>Zachary</span> <span>Candau</span></h1>
       <div class="hero-side">
-        <p class="lead">Aerospace engineer. I design, analyze and test composite structures and space hardware.</p>
-        <ul class="fields" aria-label="Fields">
-          <li>Aerospace</li>
-          <li>Astrospace</li>
-          <li>Automotive</li>
-        </ul>
+        <div class="orbit-stage">
+          <p class="hero-role"><span>Aerospace</span> <span>Engineer</span></p>
+          <span class="orbit-path" aria-hidden="true"></span>
+          <ul class="fields" aria-label="Fields">
+            {['Aerospace', 'Astrospace', 'Automotive'].map((f, k) => (
+              <li style={`--k:${k}`}><span class="ox"><span class="oy"><span class="tag">{f}</span></span></span></li>
+            ))}
+          </ul>
+        </div>
+        <p class="lead">Designing, analyzing, and testing composite structures and space hardware.</p>
       </div>
       <div class="hero-actions">
         {pads.map((b) => (
@@ -67,7 +71,7 @@ const skills: { name: string; proof: { label: string; href?: string }[] }[] = [
     </div>
     <ul class="lane" aria-label="Current projects">
       {inProgress.map((p, i) => (
-        <li style={`--i:${i};--row:${i % 3}`}>
+        <li style={`--i:${i};--row:${i % 3};--row2:${i % 2}`}>
           <a href={p.href}>
             <span class="lane-core" aria-hidden="true"></span>
             <span class="lane-title">{p.title}</span>
@@ -76,8 +80,9 @@ const skills: { name: string; proof: { label: string; href?: string }[] }[] = [
       ))}
     </ul>
     <div class="wrap now">
-      <span class="now-label">Now</span>
-      <span>Founding analysis engineer, space startup, electric propulsion</span>
+      <span class="now-mark" aria-hidden="true"><span class="now-sat"></span></span>
+      <span class="now-label">Orbit</span>
+      <span class="now-text">Founding design and analysis engineer at electric propulsion startup</span>
     </div>
   </section>
 
@@ -182,8 +187,8 @@ const skills: { name: string; proof: { label: string; href?: string }[] }[] = [
 
   <section id="contact" class="contact">
     <div class="wrap">
-      <h2 data-particle-target>Contact</h2>
-      <p class="prose">Open to conversations about engineering roles, research and collaboration.</p>
+      <h2 data-particle-target>Rendezvous</h2>
+      <p class="prose">Reach out about engineering roles, projects, research, collaboration, or anything new and interesting!</p>
       <a class="email" href="mailto:zbcandau@gmail.com">zbcandau@gmail.com</a>
       <ul class="contact-links">
         <li><a href="https://www.linkedin.com/in/zachary-candau/" rel="me noopener">LinkedIn</a></li>
