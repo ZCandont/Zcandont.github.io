@@ -22,6 +22,16 @@ const shellOnly = [
 ];
 
 const work = [...fromCollection, ...shellOnly];
+
+// Experience timeline, newest first. Skills are short tags only, not a recap of the work itself.
+const experience = [
+  { range: '09/2026 to Present', role: 'Founding Analysis Engineer', org: 'Stealth Space Startup', skills: ['COMSOL FEA', 'Design verification', 'R&D', 'Prototyping'] },
+  { range: '05/2026 to 09/2026', role: 'Mechanical Engineering Intern', org: 'Zipline International', skills: ['Composites analysis', 'Tooling design', 'Electronics layout'] },
+  { range: '01/2024 to 06/2024', role: 'Chief Engineer, Senior Design (UAV Wing)', org: 'UC San Diego', skills: ['CATIA', 'SolidWorks', 'Abaqus FEA', 'Leadership'] },
+  { range: '01/2023 to 06/2024', role: 'Instructional Assistant', org: 'UCSD Structural Engineering Dept.', skills: ['Teaching', 'Mentorship', 'Assessment design'] },
+  { range: '01/2023 to 06/2023', role: 'Undergraduate Research Lab Assistant', org: 'Advanced Aerospace Composites Laboratory', skills: ['Data analysis', 'Test setup design', 'Signal processing', 'Ultrasonic NDE'] },
+  { range: '10/2020 to 06/2022', role: 'Aerodynamicist', org: 'UCSD Triton Racing, Formula SAE', skills: ['SolidWorks', 'CATIA', 'FEA', 'CFD'] },
+];
 ---
 <Base
   title="Zachary Candau | Aerospace Engineer"
@@ -39,27 +49,60 @@ const work = [...fromCollection, ...shellOnly];
   </section>
 
   <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <h2>About</h2>
+        <p class="prose">
+          I'm an aerospace engineer focused on composite structures, structural analysis and hands-on testing.
+          I hold a B.S. in Structural Engineering from UC San Diego, am completing my M.S. there in advanced
+          aerospace composites, and work as a founding analysis engineer at a space startup building electric propulsion.
+        </p>
+        <p class="prose">
+          I am a hardware engineer who wants to build and design hardware that’s fun again. At the same time I want to use
+          the resources at my disposal and my research experience to build new pieces of software that anyone can access.
+          Every hardware engineer should learn to be a software engineer too. Mechanical engineers should be aero, aero
+          should be electrical, electrical should be SWE, SWE should be financiers, financiers should be quants, and quants
+          should be hardware engineers. Creating content to share my current place as well as my journey of growth in all
+          of these aspects.
+        </p>
+      </div>
+      <div class="about-photos">
+        <img src="/images/about/profile-palace-of-fine-arts.jpg" alt="Zachary Candau at the Palace of Fine Arts, San Francisco, at night" width="1200" height="1600" loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
     <div class="wrap">
-      <h2>About</h2>
-      <p class="prose">
-        I'm an aerospace engineer focused on composite structures, structural analysis and hands-on testing.
-        I hold a B.S. in Structural Engineering from UC San Diego, am completing my M.S. there in advanced
-        aerospace composites, and work as a founding analysis engineer at a space startup building electric propulsion.
-      </p>
-      <p class="prose">
-        I am a hardware engineer who wants to build and design hardware that’s fun again. At the same time I want to use
-        the resources at my disposal and my research experience to build new pieces of software that anyone can access.
-        Every hardware engineer should learn to be a software engineer too. Mechanical engineers should be aero, aero
-        should be electrical, electrical should be SWE, SWE should be financiers, financiers should be quants, and quants
-        should be hardware engineers. Creating content to share my current place as well as my journey of growth in all
-        of these aspects.
-      </p>
+      <h2>Experience</h2>
+      <ol class="timeline">
+        {experience.map((e) => (
+          <li>
+            <span class="meta">{e.range}</span>
+            <h3>{e.role}</h3>
+            <p>{e.org}</p>
+            <ul class="skill-tags">
+              {e.skills.map((s) => <li>{s}</li>)}
+            </ul>
+          </li>
+        ))}
+      </ol>
+      <p class="prose"><a href="/resume">See the full resume &rarr;</a></p>
     </div>
   </section>
 
   <section id="projects">
     <div class="wrap">
       <h2>Projects</h2>
+
+      <h3 class="section-sub">Current</h3>
+      <div class="orbit" role="list">
+        {fromCollection.map((p) => (
+          <a role="listitem" class="orbit-node" href={p.href}>{p.title}</a>
+        ))}
+      </div>
+
+      <h3 class="section-sub">All projects</h3>
       <ul class="work">
         {work.map((p) => (
           <li>
@@ -72,6 +115,16 @@ const work = [...fromCollection, ...shellOnly];
             </article>
           </li>
         ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="wrap">
+      <h2>Gallery</h2>
+      <ul class="album">
+        <li><img src="/images/gallery/team-poster-presentation.jpg" alt="Zachary Candau and his senior design team presenting their composite UAV wing project at a poster session" loading="lazy"></li>
+        <li><img src="/images/gallery/ppe-lab.jpg" alt="Zachary Candau in full PPE, respirator and gloves, in a materials lab" loading="lazy"></li>
       </ul>
     </div>
   </section>

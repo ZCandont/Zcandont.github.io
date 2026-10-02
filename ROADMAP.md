@@ -112,7 +112,9 @@ Also mine the resume for projects not yet in the portfolio: Zipline test setups 
 - No-JS shows the full page.
 - Canvas never blocks first paint or LCP.
 
-**Signature interaction (hero):** a Hall-thruster cross-section. Orange electrons swirl in the annular channel (E×B drift), blue ions accelerate axially out the plume, and the cursor perturbs the field. On scroll, the plume converges into "Zachary Candau." Theme only, no employer detail.
+**Signature interaction (hero):** a Hall-thruster cross-section. Orange electrons swirl in the annular channel (E×B drift), blue ions accelerate axially out the plume, and the cursor perturbs the field. ~~On scroll, the plume converges into "Zachary Candau."~~ **Changed 2026-10 at Zach's request: converges immediately on page load, not on scroll** (he wants the name visible within seconds, not gated on scrolling). Theme only, no employer detail.
+
+**Status (2026-10):** first slice shipped: `src/scripts/particles.ts`, one canvas, one rAF loop. Particles scatter on load, converge onto the real `<h1>` text over ~3s (staggered, worst case 4.5s, under the 7s budget), then settle into a light shimmer in place. ~1.2 KB gzipped. Guarded by `prefers-reduced-motion`; canvas is decorative only, the real heading text is always in the DOM. Not yet built: ambient drift across the rest of the page, cursor interaction, the plume mode, and the rest of the micro-interaction backlog, those are separate future slices.
 
 **Micro-interaction backlog** (build in slices, cut freely):
 - Ion trail on the cursor; magnetic buttons.
