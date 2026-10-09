@@ -35,11 +35,10 @@ const inProgress = status === 'in-progress';
   </section>
   <section class="case-body">
     <div class="wrap prose-body">
-      {inProgress ? (
+      {inProgress && !project.body?.trim() && (
         <p>This report is in progress. The full write-up will build here as the project develops.</p>
-      ) : (
-        <Content />
       )}
+      <Content />
     </div>
   </section>
 </Base>
